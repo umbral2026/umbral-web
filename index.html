@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>UMBRAL — Inteligencia Verificada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --negro:       #0d0d0d;
+  --gris-oscuro: #1c1c1c;
+  --gris-medio:  #3a3a3a;
+  --gris-texto:  #5a5a5a;
+  --gris-suave:  #f4f3f1;
+  --gris-linea:  #e0deda;
+  --gris-claro:  #a8a8a8;
+  --blanco:      #fafaf8;
+  --acento:      #2e4a6b;       /* azul pizarra discreto */
+  --acento-med:  #3d618f;
+  --acento-claro:#d8e4f0;
+  --acento-bg:   #f0f4f9;
+  --oro:         #b8892a;       /* dorado distintivo para la R */
+  --oro-claro:   #d4a843;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--blanco);
+  color: var(--negro);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 68px;
+  background: rgba(250,250,248,.96);
+  border-bottom: 1px solid var(--gris-linea);
+  backdrop-filter: blur(10px);
+  transition: box-shadow .3s;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-size: 18px;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--negro); text-decoration: none;
+}
+.nav-logo em {
+  font-style: normal;
+  color: var(--oro);
+  text-shadow: 0 0 12px rgba(184,137,42,.35);
+  display: inline-block;
+  transform: scaleX(1.08);
+}
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gris-texto); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--negro); }
+.nav-cta {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--acento) !important; background: transparent !important;
+  padding: 0; text-decoration: none;
+  border: none; box-shadow: none;
+  border-bottom: 1px solid var(--acento);
+  padding-bottom: 2px;
+  transition: color .2s, border-color .2s, opacity .2s;
+}
+.nav-cta:hover { color: var(--negro) !important; border-color: var(--negro); }
+
+/* hamburger */
+.nav-toggle { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-toggle span {
+  display: block; width: 22px; height: 1px;
+  background: var(--negro); margin: 5px 0; transition: .3s;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 68px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 64px; border-right: 1px solid var(--gris-linea);
+}
+.eyebrow {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--acento); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 14px;
+}
+.eyebrow::before {
+  content: ''; display: block; width: 28px; height: 1px;
+  background: var(--acento);
+}
+.hero-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(46px, 5.2vw, 74px);
+  line-height: 1.04; letter-spacing: -1px;
+  color: var(--negro); margin-bottom: 10px;
+}
+.hero-titulo em { font-style: italic; color: var(--acento); }
+.hero-subtitulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 300; color: var(--gris-texto);
+  border-left: 2px solid var(--acento);
+  padding-left: 20px; margin-bottom: 44px; line-height: 1.5;
+}
+.hero-desc {
+  font-size: 15px; line-height: 1.85;
+  color: var(--gris-texto); max-width: 420px; margin-bottom: 52px;
+}
+.btn-principal {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--negro); color: var(--blanco);
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; border: 1px solid var(--negro);
+  transition: background .2s, border-color .2s;
+}
+.btn-principal:hover { background: var(--acento); border-color: var(--acento); }
+.btn-secundario {
+  display: inline-block; margin-left: 24px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gris-texto); text-decoration: none;
+  border-bottom: 1px solid var(--gris-linea); padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.btn-secundario:hover { color: var(--negro); border-color: var(--negro); }
+
+.hero-right {
+  background: var(--gris-suave);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 60px; position: relative; overflow: hidden;
+}
+.hero-right::after {
+  content: 'UMBRAL';
+  position: absolute; bottom: -28px; right: -16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 200px; font-weight: 300;
+  color: rgba(0,0,0,.035); line-height: 1;
+  letter-spacing: -6px; user-select: none; pointer-events: none;
+}
+.pilares-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--gris-linea);
+  border: 1px solid var(--gris-linea);
+  position: relative; z-index: 1;
+}
+.pilar {
+  background: var(--blanco); padding: 30px 26px;
+  transition: background .2s;
+}
+.pilar:hover { background: #f8f7f5; }
+.pilar-icono {
+  width: 36px; height: 36px; margin-bottom: 18px;
+}
+.pilar-icono svg { width: 22px; height: 22px; stroke: var(--acento); fill: none; stroke-width: 1.4; }
+.pilar-t {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 400;
+  color: var(--negro); margin-bottom: 8px;
+}
+.pilar-d { font-size: 12.5px; color: var(--gris-texto); line-height: 1.65; }
+
+.hero-nota {
+  margin-top: 28px; padding: 20px 24px;
+  background: var(--acento-bg);
+  border-left: 2px solid var(--acento);
+  position: relative; z-index: 1;
+}
+.hero-nota p { font-size: 13px; color: var(--gris-medio); line-height: 1.65; }
+.hero-nota strong {
+  display: block; font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--acento);
+  margin-bottom: 6px; font-weight: 500;
+}
+
+/* ── SECCIÓN GENÉRICA ── */
+.sec { padding: 100px 64px; border-top: 1px solid var(--gris-linea); }
+.sec.gris { background: var(--gris-suave); }
+.sec.oscuro { background: var(--negro); border-top: 1px solid #1a1a1a; }
+.sec-eyebrow {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--acento); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.sec-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--acento); }
+.sec.oscuro .sec-eyebrow { color: #6b8db3; }
+.sec.oscuro .sec-eyebrow::before { background: #6b8db3; }
+.sec-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 3.2vw, 46px);
+  font-weight: 300; line-height: 1.08;
+  margin-bottom: 16px; max-width: 580px;
+}
+.sec.oscuro .sec-titulo { color: var(--blanco); }
+.sec-desc {
+  font-size: 15px; color: var(--gris-texto);
+  max-width: 560px; margin-bottom: 60px; line-height: 1.8;
+}
+.sec.oscuro .sec-desc { color: #7a7a7a; }
+
+/* ── GRID SERVICIOS ── */
+.grid-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--gris-linea);
+  border: 1px solid var(--gris-linea);
+}
+.card {
+  background: var(--blanco); padding: 40px 34px;
+  transition: background .2s;
+}
+.card:hover { background: #f8f7f5; }
+.sec.gris .card { background: var(--blanco); }
+.card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 3px;
+  color: var(--acento); margin-bottom: 20px; display: block;
+}
+.card-icono { width: 38px; height: 38px; margin-bottom: 20px; display: flex; align-items: center; }
+.card-icono svg { width: 22px; height: 22px; stroke: var(--acento); fill: none; stroke-width: 1.4; }
+.card-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px; font-weight: 400;
+  color: var(--negro); margin-bottom: 14px;
+}
+.card-desc {
+  font-size: 13.5px; line-height: 1.8;
+  color: var(--gris-texto); margin-bottom: 22px;
+}
+.card-lista { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.card-lista li {
+  font-size: 12px; color: var(--gris-texto);
+  display: flex; align-items: flex-start; gap: 10px;
+  padding-top: 7px; border-top: 1px solid var(--gris-linea);
+}
+.card-lista li::before {
+  content: '—'; color: var(--acento);
+  font-size: 11px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* investigación privada card especial */
+.card.card-destacada {
+  background: var(--negro);
+  border-left: 3px solid var(--oro);
+  color: var(--blanco);
+  position: relative;
+  overflow: hidden;
+}
+.card.card-destacada::before {
+  content: '私';
+  position: absolute; bottom: -20px; right: -10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 160px; font-weight: 300;
+  color: rgba(255,255,255,.03); line-height: 1;
+  user-select: none; pointer-events: none;
+}
+.card.card-destacada:hover { background: #111; }
+.card.card-destacada .card-titulo { color: var(--blanco); }
+.card.card-destacada .card-desc { color: #999; }
+.card.card-destacada .card-lista li { color: #888; border-top-color: #2a2a2a; }
+.card.card-destacada .card-lista li::before { color: var(--oro); }
+.card.card-destacada .card-icono svg { stroke: var(--oro); }
+.card-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--oro);
+  border: 1px solid rgba(184,137,42,.4);
+  padding: 4px 12px; margin-bottom: 18px;
+  background: rgba(184,137,42,.08);
+}
+.card-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--oro);
+  flex-shrink: 0;
+}
+
+/* ── A QUIÉN VA DIRIGIDO ── */
+.perfiles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--gris-linea);
+  border: 1px solid var(--gris-linea);
+}
+.perfil {
+  background: var(--blanco); padding: 40px 34px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.perfil-icono svg { width: 28px; height: 28px; stroke: var(--acento); fill: none; stroke-width: 1.2; }
+.perfil-t {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: var(--negro);
+}
+.perfil-d { font-size: 13.5px; color: var(--gris-texto); line-height: 1.75; }
+.perfil-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.ptag {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 3px 10px; background: var(--gris-suave);
+  color: var(--gris-texto); border: 1px solid var(--gris-linea);
+}
+
+/* ── GARANTÍAS ── */
+.garantias-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: #1c1c1c; border: 1px solid #1c1c1c;
+}
+.garantia {
+  background: var(--gris-oscuro); padding: 36px 30px;
+  transition: background .2s;
+}
+.garantia:hover { background: #222; }
+.garantia-icono { margin-bottom: 20px; }
+.garantia-icono svg { width: 22px; height: 22px; stroke: #6b8db3; fill: none; stroke-width: 1.3; }
+.garantia-t { font-size: 14px; font-weight: 500; color: var(--blanco); margin-bottom: 10px; }
+.garantia-d { font-size: 12.5px; color: #777; line-height: 1.7; }
+
+/* ── CÓMO FUNCIONA ── */
+.pasos-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: start; margin-top: 60px;
+}
+.pasos { display: flex; flex-direction: column; }
+.paso { display: flex; gap: 28px; padding: 32px 0; border-bottom: 1px solid var(--gris-linea); }
+.paso:first-child { padding-top: 0; }
+.paso-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px; font-weight: 300; color: var(--gris-linea);
+  line-height: 1; flex-shrink: 0; width: 48px;
+}
+.paso-t { font-weight: 500; font-size: 15px; color: var(--negro); margin-bottom: 8px; }
+.paso-d { font-size: 13px; color: var(--gris-texto); line-height: 1.75; }
+.paso-badge {
+  display: inline-block; margin-top: 10px;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--acento); background: var(--acento-bg); padding: 3px 12px;
+}
+
+.proceso-nota {
+  background: var(--gris-suave); border: 1px solid var(--gris-linea);
+  padding: 36px; display: flex; flex-direction: column; gap: 16px;
+}
+.proceso-nota-head {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gris-claro); padding-bottom: 16px;
+  border-bottom: 1px solid var(--gris-linea);
+}
+.proceso-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid var(--gris-linea);
+  font-size: 13px; color: var(--gris-texto); line-height: 1.6;
+}
+.proceso-item:last-child { border-bottom: none; }
+.proceso-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acento); flex-shrink: 0; margin-top: 5px;
+}
+
+/* ── CONTACTO / FORMULARIO ── */
+.contacto-wrap {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
+  padding: 100px 64px; border-top: 1px solid var(--gris-linea);
+  align-items: start;
+}
+.contacto-intro {
+  font-size: 14px; color: var(--gris-texto);
+  line-height: 1.85; max-width: 360px; margin-bottom: 40px;
+}
+.contacto-datos { display: flex; flex-direction: column; gap: 0; }
+.dato {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 18px 0; border-bottom: 1px solid var(--gris-linea);
+}
+.dato:first-child { padding-top: 0; }
+.dato-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gris-claro); }
+.dato-v {
+  font-size: 14px; color: var(--negro); text-decoration: none;
+  transition: color .2s;
+}
+a.dato-v:hover { color: var(--acento); }
+
+.form-box {
+  background: var(--gris-suave); border: 1px solid var(--gris-linea);
+  padding: 44px 40px;
+}
+.form-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--negro); margin-bottom: 32px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.fg:last-of-type { margin-bottom: 0; }
+.fg label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gris-claro);
+}
+.fg input, .fg select, .fg textarea {
+  padding: 12px 14px;
+  background: var(--blanco); border: 1px solid var(--gris-linea);
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: var(--negro); outline: none;
+  transition: border-color .2s;
+  appearance: none; -webkit-appearance: none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--acento);
+}
+.fg textarea { min-height: 110px; resize: vertical; }
+.fg select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5a5a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-submit {
+  width: 100%; margin-top: 24px;
+  padding: 16px; background: var(--negro); color: var(--blanco);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  border: 1px solid var(--negro); cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.form-submit:hover { background: var(--acento); border-color: var(--acento); }
+.form-rgpd {
+  font-size: 11px; color: var(--gris-claro);
+  line-height: 1.6; margin-top: 14px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--negro); color: var(--blanco);
+  padding: 48px 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid #1a1a1a;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 18px;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--blanco);
+}
+.footer-logo em { font-style: normal; color: var(--oro-claro); text-shadow: 0 0 10px rgba(212,168,67,.4); }
+.footer-txt { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #444; }
+.footer-legal { display: flex; gap: 28px; }
+.footer-legal a {
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+  color: #444; text-decoration: none; transition: color .2s;
+}
+.footer-legal a:hover { color: #999; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav { padding: 0 32px; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--blanco); padding: 24px 32px; border-bottom: 1px solid var(--gris-linea); gap: 20px; }
+  .nav-toggle { display: block; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 60px 32px; border-right: none; border-bottom: 1px solid var(--gris-linea); }
+  .hero-right { padding: 48px 32px; }
+  .sec { padding: 72px 32px; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .perfiles-grid { grid-template-columns: 1fr; }
+  .garantias-grid { grid-template-columns: 1fr 1fr; }
+  .pasos-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .contacto-wrap { grid-template-columns: 1fr; padding: 72px 32px; gap: 48px; }
+  footer { padding: 40px 32px; flex-direction: column; align-items: flex-start; }
+  .pilares-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+  .garantias-grid { grid-template-columns: 1fr; }
+  .hero-titulo { font-size: 38px; }
+  .btn-secundario { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">UMB<em>R</em>AL</a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#clientes">Para quién</a></li>
+    <li><a href="#proceso">Cómo funciona</a></li>
+    <li><a href="#contacto" class="nav-cta">Consulta confidencial</a></li>
+  </ul>
+  <button class="nav-toggle" id="navtoggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow reveal">Inteligencia aplicada · Fuentes legales</p>
+    <h1 class="hero-titulo reveal">
+      Información<br>
+      <em>verificada</em><br>
+      antes de decidir.
+    </h1>
+    <p class="hero-subtitulo reveal">
+      Verificación de identidades, solvencia y coherencia<br>
+      para inmobiliarias, despachos y empresas.
+    </p>
+    <p class="hero-desc reveal">
+      Antes de firmar un contrato, admitir a un inquilino o cerrar un acuerdo con un socio, conviene saber con quién se trata. UMBRAL obtiene, cruza y valida información de fuentes abiertas y públicas para que sus decisiones estén respaldadas por hechos.
+    </p>
+    <div class="reveal">
+      <a href="#contacto" class="btn-principal">Solicitar consulta</a>
+      <a href="#servicios" class="btn-secundario">Ver servicios</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="pilares-grid">
+      <div class="pilar reveal">
+        <div class="pilar-icono">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div class="pilar-t">Identidad verificada</div>
+        <p class="pilar-d">Confirmación documental y cruce de fuentes sobre la persona física o jurídica.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="pilar-t">Solvencia e historial</div>
+        <p class="pilar-d">Análisis patrimonial, laboral y de antecedentes disponibles en registros públicos.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="pilar-t">Coherencia digital</div>
+        <p class="pilar-d">Contraste entre la identidad declarada y su huella digital y presencial.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="pilar-t">Socios y relaciones</div>
+        <p class="pilar-d">Verificación de vínculos societarios, reputación y perfil de riesgo de terceros.</p>
+      </div>
+    </div>
+    <div class="hero-nota reveal">
+      <strong>Confidencialidad y legalidad</strong>
+      <p>Todo el trabajo se realiza con fuentes públicas y legales, en cumplimiento estricto del RGPD y la normativa española de protección de datos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section class="sec" id="servicios">
+  <p class="sec-eyebrow reveal">Servicios</p>
+  <h2 class="sec-titulo reveal">Lo que<br>hacemos.</h2>
+  <p class="sec-desc reveal">Un conjunto claro y acotado de servicios diseñados para dar respuesta a las necesidades de información más habituales en entornos profesionales. Sin letra pequeña, sin promesas vagas.</p>
+
+  <div class="grid-3">
+
+    <div class="card reveal">
+      <div class="card-icono">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/><circle cx="9" cy="9" r=".5" fill="currentColor"/></svg>
+      </div>
+      <span class="card-num">01</span>
+      <h3 class="card-titulo">Verificación de inquilinos</h3>
+      <p class="card-desc">Antes de entregar las llaves. Perfil integral del candidato con contraste de identidad, solvencia real y coherencia entre lo declarado y lo verificable.</p>
+      <ul class="card-lista">
+        <li>Verificación de identidad documental</li>
+        <li>Solvencia y capacidad de pago contrastada</li>
+        <li>Historial de impagos y litigios (fuentes públicas)</li>
+        <li>Coherencia digital y nivel de vida aparente</li>
+        <li>Alertas de inconsistencias detectadas</li>
+      </ul>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-icono">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="card-num">02</span>
+      <h3 class="card-titulo">Due diligence de socios</h3>
+      <p class="card-desc">Antes de firmar. Análisis de perfil, vínculos societarios y reputación de quien va a convertirse en su contraparte comercial o socio de negocio.</p>
+      <ul class="card-lista">
+        <li>Verificación de identidad y representación legal</li>
+        <li>Estructura societaria y participaciones</li>
+        <li>Reputación profesional y registros públicos</li>
+        <li>Posibles conflictos de interés o alertas</li>
+      </ul>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-icono">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <span class="card-num">03</span>
+      <h3 class="card-titulo">Análisis de solvencia y antecedentes</h3>
+      <p class="card-desc">Informe de solvencia económica y antecedentes relevantes sobre persona física o jurídica. Pensado para departamentos de riesgo, RRHH o compliance.</p>
+      <ul class="card-lista">
+        <li>Situación patrimonial y laboral aparente</li>
+        <li>Antecedentes en registros y fuentes abiertas</li>
+        <li>Coherencia entre perfil declarado y verificable</li>
+        <li>Síntesis ejecutiva con nivel de riesgo</li>
+      </ul>
+    </div>
+
+    <div class="card reveal" style="grid-column: span 2;">
+      <div class="card-icono">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+      </div>
+      <span class="card-num">04</span>
+      <h3 class="card-titulo">Coherencia digital y presencial</h3>
+      <p class="card-desc">Contraste entre la imagen que una persona o empresa proyecta en sus canales digitales y la realidad contrastable. Detecta incoherencias entre el perfil declarado, el nivel de vida aparente y la huella verificable en fuentes abiertas.</p>
+      <ul class="card-lista" style="columns: 2; gap: 16px;">
+        <li>Análisis de presencia digital</li>
+        <li>Coherencia entre perfil y nivel de vida aparente</li>
+        <li>Detección de identidades o datos inconsistentes</li>
+        <li>Contraste de información en fuentes múltiples</li>
+      </ul>
+    </div>
+
+    <div class="card card-destacada reveal">
+      <span class="card-badge">Nuestro equipo de detectives privados</span>
+      <div class="card-icono">
+        <svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3 class="card-titulo">Investigación privada</h3>
+      <p class="card-desc">Cuando el caso requiere ir más allá de las fuentes abiertas, nuestro equipo de detectives privados titulados lo estudia, lo planifica y lo ejecuta. Cada encargo se valora individualmente y se plantea con total transparencia jurídica.</p>
+      <ul class="card-lista">
+        <li>Análisis previo de viabilidad legal</li>
+        <li>Planificación y metodología rigurosa</li>
+        <li>Ejecución por detective titulado (TIP)</li>
+        <li>Informe con validez legal</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PARA QUIÉN ── -->
+<section class="sec gris" id="clientes">
+  <p class="sec-eyebrow reveal">Clientes</p>
+  <h2 class="sec-titulo reveal">Un servicio pensado<br>para profesionales.</h2>
+  <p class="sec-desc reveal">UMBRAL trabaja exclusivamente en el ámbito B2B. Cada sector tiene sus necesidades específicas y sus plazos propios. Nos adaptamos.</p>
+
+  <div class="perfiles-grid">
+    <div class="perfil reveal">
+      <div class="perfil-icono">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="perfil-t">Inmobiliarias y gestores de patrimonio</h3>
+      <p class="perfil-d">Verificación de inquilinos, compradores y arrendatarios antes de formalizar cualquier operación. Reduzca impagos y litigios con información contrastada.</p>
+      <div class="perfil-tags">
+        <span class="ptag">Inquilinos</span>
+        <span class="ptag">Compradores</span>
+        <span class="ptag">Solvencia</span>
+        <span class="ptag">Arrendamiento</span>
+      </div>
+    </div>
+    <div class="perfil reveal">
+      <div class="perfil-icono">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3 class="perfil-t">Despachos de abogados</h3>
+      <p class="perfil-d">Información previa sobre contrapartes, demandados o representados. Contexto verificable que fortalece la estrategia procesal y evita sorpresas.</p>
+      <div class="perfil-tags">
+        <span class="ptag">Contrapartes</span>
+        <span class="ptag">Diligencia previa</span>
+        <span class="ptag">Litigios</span>
+        <span class="ptag">Peritaje</span>
+      </div>
+    </div>
+    <div class="perfil reveal">
+      <div class="perfil-icono">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <h3 class="perfil-t">Empresas y departamentos de RRHH / Compliance</h3>
+      <p class="perfil-d">Verificación de candidatos, socios comerciales o nuevas incorporaciones. Due diligence básica para decisiones de negocio respaldadas por datos reales.</p>
+      <div class="perfil-tags">
+        <span class="ptag">Socios comerciales</span>
+        <span class="ptag">RRHH</span>
+        <span class="ptag">Compliance</span>
+        <span class="ptag">Proveedores</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GARANTÍAS ── -->
+<section class="sec oscuro">
+  <p class="sec-eyebrow reveal">Principios</p>
+  <h2 class="sec-titulo reveal">Cómo trabajamos.</h2>
+  <p class="sec-desc reveal">Rigor metodológico y marco legal en cada encargo. Sin excepciones.</p>
+  <div class="garantias-grid">
+    <div class="garantia reveal">
+      <div class="garantia-icono">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="garantia-t">Solo fuentes legales</div>
+      <p class="garantia-d">Fuentes abiertas, públicas y legales. Nunca accedemos a datos privados ni empleamos técnicas intrusivas.</p>
+    </div>
+    <div class="garantia reveal">
+      <div class="garantia-icono">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div class="garantia-t">Datos contrastados</div>
+      <p class="garantia-d">Cada dato relevante se confirma en al menos dos fuentes independientes. Distinguimos hechos de indicios.</p>
+    </div>
+    <div class="garantia reveal">
+      <div class="garantia-icono">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="garantia-t">Confidencialidad RGPD</div>
+      <p class="garantia-d">Tratamiento conforme al Reglamento Europeo. Los informes se eliminan de nuestros sistemas a los 30 días de la entrega.</p>
+    </div>
+    <div class="garantia reveal">
+      <div class="garantia-icono">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="garantia-t">Plazos reales</div>
+      <p class="garantia-d">El plazo se comunica antes de comenzar, no después. Si el encargo requiere más tiempo, se informa con antelación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section class="sec gris" id="proceso">
+  <p class="sec-eyebrow reveal">Proceso</p>
+  <h2 class="sec-titulo reveal">Tres pasos.<br>Sin complejidad.</h2>
+  <p class="sec-desc reveal">El proceso está pensado para ser sencillo en su inicio. Usted describe lo que necesita; nosotros lo estructuramos y lo ejecutamos.</p>
+
+  <div class="pasos-wrap">
+    <div class="pasos">
+      <div class="paso reveal">
+        <div class="paso-n">01</div>
+        <div>
+          <div class="paso-t">Consulta inicial confidencial</div>
+          <p class="paso-d">Nos describe el encargo: qué necesita saber, sobre quién y con qué fin. No hace falta aportar información confidencial en este primer contacto. En menos de 24 horas hábiles le confirmamos viabilidad, enfoque y plazo.</p>
+          <span class="paso-badge">Formulario de consulta</span>
+        </div>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-n">02</div>
+        <div>
+          <div class="paso-t">Análisis y ejecución</div>
+          <p class="paso-d">Una vez confirmado el encargo, comenzamos el proceso de obtención y contraste de información. Si el caso requiere investigación privada titulada, se lo planteamos con total claridad antes de proceder.</p>
+          <span class="paso-badge">Metodología rigurosa</span>
+        </div>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-n">03</div>
+        <div>
+          <div class="paso-t">Entrega del informe</div>
+          <p class="paso-d">Recibe un informe estructurado, claro y accionable. Hechos contrastados, indicios señalados como tales, y conclusiones orientadas a la toma de decisiones. Formato digital seguro.</p>
+          <span class="paso-badge">Informe verificado</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proceso-nota reveal">
+      <div class="proceso-nota-head">Qué incluye el informe</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Identidad verificada mediante cruce de fuentes</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Situación patrimonial y laboral aparente</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Antecedentes en registros y bases públicas</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Presencia digital y coherencia con el perfil declarado</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Vínculos societarios o relacionales relevantes</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Alertas e inconsistencias detectadas</div>
+      <div class="proceso-item"><div class="proceso-dot"></div>Conclusión ejecutiva con nivel de riesgo orientativo</div>
+      <div class="proceso-item" style="border-bottom:none">Fuentes utilizadas y metodología aplicada</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto" class="contacto-wrap">
+  <div>
+    <p class="sec-eyebrow reveal">Contacto</p>
+    <h2 class="sec-titulo reveal" style="margin-bottom:20px">
+      Solicite su<br>consulta.
+    </h2>
+    <p class="contacto-intro reveal">
+      Descríbanos brevemente el encargo. No es necesario facilitar información confidencial en este primer contacto. Le respondemos en menos de 24 horas hábiles para confirmar disponibilidad, enfoque y condiciones.
+    </p>
+    <div class="contacto-datos reveal">
+      <div class="dato">
+        <span class="dato-l">Respuesta</span>
+        <span class="dato-v" style="cursor:default;color:var(--gris-texto);font-size:13px">Menos de 24 horas hábiles</span>
+      </div>
+      <div class="dato">
+        <span class="dato-l">Confidencialidad</span>
+        <span class="dato-v" style="cursor:default;color:var(--gris-texto);font-size:13px">Su información se usa exclusivamente para gestionar el encargo.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-box reveal">
+    <h3 class="form-titulo">Solicitud de consulta confidencial</h3>
+    <div class="form-row">
+      <div class="fg"><label>Nombre</label><input type="text" placeholder="Su nombre"></div>
+      <div class="fg"><label>Empresa / Despacho</label><input type="text" placeholder="Organización"></div>
+    </div>
+    <div class="fg"><label>Email de contacto</label><input type="email" placeholder="correo@empresa.com"></div>
+    <div class="fg"><label>Teléfono (opcional)</label><input type="tel" placeholder="+34 ..."></div>
+    <div class="fg">
+      <label>Tipo de servicio</label>
+      <select>
+        <option value="">Seleccione una opción</option>
+        <option>Verificación de inquilino</option>
+        <option>Due diligence de socio comercial</option>
+        <option>Análisis de solvencia y antecedentes</option>
+        <option>Coherencia digital y presencial</option>
+        <option>Investigación privada (a valorar)</option>
+        <option>No lo sé aún — necesito orientación</option>
+      </select>
+    </div>
+    <div class="fg"><label>Descripción del encargo</label><textarea placeholder="Describa brevemente qué necesita saber, sobre quién y con qué fin. No es necesario incluir información confidencial en este primer contacto."></textarea></div>
+    <button class="form-submit" id="form-btn" type="button" onclick="enviarFormulario()">Solicitar consulta confidencial</button>
+    <p class="form-rgpd">Sus datos se tratarán conforme al RGPD exclusivamente para gestionar su solicitud y no serán cedidos a terceros. Puede ejercer sus derechos escribiendo a la dirección de contacto indicada.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">UMB<em>R</em>AL</div>
+  <div class="footer-txt">Inteligencia verificada · Fuentes legales · España</div>
+  <div class="footer-legal">
+    <a href="#">Política de privacidad</a>
+    <a href="#">Aviso legal</a>
+    <a href="#">RGPD</a>
+  </div>
+</footer>
+
+<script>
+/* ── REVEAL ON SCROLL ── */
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 55);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  els.forEach(el => obs.observe(el));
+}
+
+/* ── NAV SHADOW + MOBILE ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 1px 24px rgba(0,0,0,.07)' : 'none';
+});
+document.getElementById('navtoggle').addEventListener('click', () => {
+  document.getElementById('navlinks').classList.toggle('open');
+});
+
+/* ── FORMULARIO ── */
+async function enviarFormulario() {
+  const btn = document.getElementById('form-btn');
+  const nombre = document.querySelector('input[placeholder="Su nombre"]').value.trim();
+  const email = document.querySelector('input[placeholder="correo@empresa.com"]').value.trim();
+  const descripcion = document.querySelector('textarea').value.trim();
+
+  if (!nombre || !email || !descripcion) {
+    btn.textContent = '⚠ Complete los campos obligatorios';
+    btn.style.background = '#8b3a1a';
+    setTimeout(() => {
+      btn.textContent = 'Solicitar consulta confidencial';
+      btn.style.background = '';
+    }, 3000);
+    return;
+  }
+
+  const empresa = document.querySelector('input[placeholder="Organización"]').value.trim();
+  const telefono = document.querySelector('input[placeholder="+34 ..."]').value.trim();
+  const servicio = document.querySelector('select').value;
+
+  btn.textContent = 'Enviando…';
+  btn.style.background = '#444';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xpqkqvwv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nombre, empresa, email, telefono, servicio, descripcion })
+    });
+    if (res.ok) {
+      btn.textContent = '✓ Solicitud recibida — le contactaremos en breve';
+      btn.style.background = '#1f4e2a';
+      document.querySelectorAll('.fg input, .fg textarea, .fg select').forEach(el => el.value = '');
+    } else {
+      throw new Error('Error en el envío');
+    }
+  } catch (err) {
+    btn.textContent = '✗ Error al enviar — inténtelo de nuevo';
+    btn.style.background = '#8b3a1a';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = 'Solicitar consulta confidencial';
+      btn.style.background = '';
+    }, 4000);
+  }
+}
+
+initReveal();
+</script>
+</body>
+</html>
