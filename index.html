@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UMBRAL — Inteligencia Inmobiliaria Local · Valencia</title>
-<meta name="description" content="Informes de Inteligencia de Mercado e Inteligencia Competitiva para agencias inmobiliarias. Datos reales, análisis riguroso, ventaja competitiva. Comunitat Valenciana.">
+<title>UMBRAL — Real Estate Intelligence · Valencia</title>
+<meta name="description" content="Inteligencia inmobiliaria para agencias: informe de mercado, análisis competitivo, argumentario por inmueble e informe de orientación de compra para compradores europeos. Datos reales, análisis riguroso, ventaja competitiva. Comunitat Valenciana.">
 <meta name="keywords" content="inteligencia de mercado inmobiliario Valencia, análisis competitivo agencia inmobiliaria, informe mercado inmobiliario, Umbral inteligencia inmobiliaria">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -662,6 +662,27 @@ footer {
   .miembro-foto { min-height: 280px; }
   .precios-tabla td, .precios-tabla th { padding: 12px; font-size: 13px; }
 }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+  display: flex; gap: 6px; align-items: center;
+  font-size: 11px; letter-spacing: 2px;
+  margin-left: 24px;
+}
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gris-claro); padding: 0; transition: color .2s;
+}
+.lang-btn.active { color: var(--negro); font-weight: 500; }
+.lang-btn:hover { color: var(--negro); }
+.lang-sep { color: var(--gris-linea); }
+[data-lang="en"] .es-text { display: none; }
+[data-lang="en"] .en-text { display: inline; }
+[data-lang="es"] .en-text { display: none; }
+[data-lang="es"] .es-text { display: inline; }
+
 </style>
 </head>
 <body>
@@ -670,11 +691,16 @@ footer {
 <nav id="navbar">
   <a href="#" class="nav-logo">UMB<em>R</em>AL</a>
   <ul class="nav-links" id="navlinks">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#precios">Precios</a></li>
-    <li><a href="#metodologia">Metodología</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#contacto" class="nav-cta">Solicitar informe</a></li>
+    <li><a href="#servicios"><span class="es-text">Servicios</span><span class="en-text">Services</span></a></li>
+    <li><a href="#precios"><span class="es-text">Precios</span><span class="en-text">Pricing</span></a></li>
+    <li><a href="#metodologia"><span class="es-text">Metodología</span><span class="en-text">Method</span></a></li>
+    <li><a href="#equipo"><span class="es-text">Equipo</span><span class="en-text">Team</span></a></li>
+    <li><a href="#contacto" class="nav-cta"><span class="es-text">Solicitar informe</span><span class="en-text">Request a report</span></a></li>
+  <li class="lang-toggle">
+    <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </li>
   </ul>
   <button class="nav-toggle" id="navtoggle" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -684,21 +710,13 @@ footer {
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-left">
-    <p class="eyebrow reveal">Inteligencia Inmobiliaria · Comunitat Valenciana</p>
-    <h1 class="hero-titulo reveal">
-      Tus decisiones<br>merecen datos<br><em>reales.</em>
-    </h1>
-    <p class="hero-subtitulo reveal">
-      Informes de mercado e inteligencia competitiva<br>
-      diseñados para directores de agencia inmobiliaria.
-    </p>
-    <p class="hero-desc reveal">
-      Las grandes franquicias toman decisiones con datos propios. Con UMBRAL, tu agencia también. 
-      Informes rigurosos, accionables y entregados en 5-7 días hábiles. Sin estructuras fijas. Sin coste de analista a jornada completa.
-    </p>
+    <p class="eyebrow reveal"><span class="es-text">Inteligencia Inmobiliaria · Comunitat Valenciana</span><span class="en-text">Real Estate Intelligence · Valencia Region</span></p>
+    <h1 class="hero-titulo reveal"><span class="es-text">Tus decisiones<br>merecen datos<br><em>reales.</em></span><span class="en-text">Your decisions<br>deserve real<br><em>data.</em></span></h1>
+    <p class="hero-subtitulo reveal"><span class="es-text">Informes de mercado e inteligencia competitiva<br>diseñados para directores de agencia inmobiliaria.</span><span class="en-text">Market reports and competitive intelligence<br>built for real estate agency directors.</span></p>
+    <p class="hero-desc reveal"><span class="es-text">Las grandes franquicias toman decisiones con datos propios. Con UMBRAL, tu agencia también. Informes rigurosos, accionables y entregados en 5-7 días hábiles. Sin estructuras fijas. Sin coste de analista a jornada completa.</span><span class="en-text">Large franchises make decisions with their own data. With UMBRAL, your agency can too. Rigorous, actionable reports delivered in 5–7 business days. No fixed structures. No full-time analyst cost.</span></p>
     <div class="btns reveal">
-      <a href="#contacto" class="btn-principal">Solicitar informe</a>
-      <a href="#servicios" class="btn-secundario">Ver servicios →</a>
+      <a href="#contacto" class="btn-principal"><span class="es-text">Solicitar informe</span><span class="en-text">Request a report</span></a>
+      <a href="#servicios" class="btn-secundario"><span class="es-text">Ver servicios →</span><span class="en-text">View services →</span></a>
     </div>
   </div>
   <div class="hero-right">
@@ -714,60 +732,60 @@ footer {
 <div class="stats-strip reveal">
   <div class="stat">
     <div class="stat-n">5<em>–7</em></div>
-    <div class="stat-l">Días hábiles<br>de entrega</div>
+    <div class="stat-l"><span class="es-text">Días hábiles<br>de entrega</span><span class="en-text">Business days<br>delivery</span></div>
   </div>
   <div class="stat">
     <div class="stat-n">290<em>€</em></div>
-    <div class="stat-l">Informe de mercado<br>desde 290 €/mes</div>
+    <div class="stat-l"><span class="es-text">Informe de mercado<br>desde 290 €/mes</span><span class="en-text">Market report<br>from €290/month</span></div>
   </div>
   <div class="stat">
     <div class="stat-n">2</div>
-    <div class="stat-l">Servicios especializados<br>sector inmobiliario</div>
+    <div class="stat-l"><span class="es-text">Servicios especializados<br>sector inmobiliario</span><span class="en-text">Specialised services<br>real estate sector</span></div>
   </div>
   <div class="stat">
     <div class="stat-n">24<em>h</em></div>
-    <div class="stat-l">Respuesta a tu<br>consulta inicial</div>
+    <div class="stat-l"><span class="es-text">Respuesta a tu<br>consulta inicial</span><span class="en-text">Response to your<br>initial enquiry</span></div>
   </div>
 </div>
 
 <!-- ── PROBLEMA ── -->
 <section class="sec" id="problema">
-  <p class="sec-eyebrow reveal">El problema</p>
-  <h2 class="sec-titulo reveal">Decides sobre tu mercado.<br>¿Con qué datos lo haces?</h2>
-  <p class="sec-desc reveal">La mayoría de directores de agencia toman decisiones estratégicas con información incompleta, datos de portales sin contrastar o intuición acumulada. Eso tiene un coste real.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">El problema</span><span class="en-text">The problem</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Decides sobre tu mercado.<br>¿Con qué datos lo haces?</span><span class="en-text">You make decisions about your market.<br>What data are you using?</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">La mayoría de directores de agencia toman decisiones estratégicas con información incompleta, datos de portales sin contrastar o intuición acumulada. Eso tiene un coste real.</span><span class="en-text">Most agency directors make strategic decisions with incomplete information, unverified portal data, or accumulated intuition. That has a real cost.</span></p>
   <div class="dolor-grid">
     <div class="dolor-item reveal">
-      <div class="dolor-q">"¿Está bien el precio de esta captación o lo estoy perdiendo?"</div>
-      <div class="dolor-a">Sin datos de cierre real de tu zona —no de portal—, fijar el precio de captación es una estimación. Un error de un 5% en precio puede costarte el mandato o meses de stock.</div>
+      <div class="dolor-q"><span class="es-text">"¿Está bien el precio de esta captación o lo estoy perdiendo?"</span><span class="en-text">"Is this listing priced right or am I losing it?"</span></div>
+      <div class="dolor-a"><span class="es-text">Sin datos de cierre real de tu zona —no de portal—, fijar el precio de captación es una estimación. Un error de un 5% en precio puede costarte el mandato o meses de stock.</span><span class="en-text">Without real closing price data for your area —not portal data— setting the listing price is a guess. A 5% pricing error can cost you the mandate or months of unsold stock.</span></div>
     </div>
     <div class="dolor-item reveal">
-      <div class="dolor-q">"¿Por qué pierde cuota mi agencia frente a [competidor]?"</div>
-      <div class="dolor-a">Si no sabes qué publica tu competencia, en qué portales aparece, qué argumentario usa y cuál es su cartera activa, no puedes diseñar una respuesta estratégica.</div>
+      <div class="dolor-q"><span class="es-text">"¿Por qué pierde cuota mi agencia frente a la competencia?"</span><span class="en-text">"Why is my agency losing market share to competitors?"</span></div>
+      <div class="dolor-a"><span class="es-text">Si no sabes qué publica tu competencia, en qué portales aparece, qué argumentario usa y cuál es su cartera activa, no puedes diseñar una respuesta estratégica.</span><span class="en-text">If you don't know what your competition is listing, which portals they're on, what pitch they use, and their active portfolio, you can't build a strategic response.</span></div>
     </div>
     <div class="dolor-item reveal">
-      <div class="dolor-q">"¿Qué perfil de comprador está activo ahora mismo en mi zona?"</div>
-      <div class="dolor-a">El comprador de este trimestre no es el mismo que el del año pasado. Tipo de cambio, procedencia, presupuesto y motivación cambian. El argumentario que funcionaba ayer puede no funcionar hoy.</div>
+      <div class="dolor-q"><span class="es-text">"¿Qué perfil de comprador está activo ahora mismo en mi zona?"</span><span class="en-text">"What type of buyer is active in my area right now?"</span></div>
+      <div class="dolor-a"><span class="es-text">El comprador de este trimestre no es el mismo que el del año pasado. Tipo de cambio, procedencia, presupuesto y motivación cambian. El argumentario que funcionaba ayer puede no funcionar hoy.</span><span class="en-text">This quarter's buyer is not the same as last year's. Exchange rates, origin, budget, and motivation shift. The pitch that worked yesterday may not work today.</span></div>
     </div>
     <div class="dolor-item reveal">
-      <div class="dolor-q">"¿Qué tienen las franquicias que yo no tengo?"</div>
-      <div class="dolor-a">Datos propios, analistas internos e inteligencia sistemática de mercado. Con UMBRAL, tu agencia independiente accede al mismo nivel de información. Sin contratar a nadie a jornada completa.</div>
+      <div class="dolor-q"><span class="es-text">"¿Qué tienen las franquicias que yo no tengo?"</span><span class="en-text">"What do franchises have that I don't?"</span></div>
+      <div class="dolor-a"><span class="es-text">Datos propios, analistas internos e inteligencia sistemática de mercado. Con UMBRAL, tu agencia independiente accede al mismo nivel de información. Sin contratar a nadie a jornada completa.</span><span class="en-text">Their own data, internal analysts, and systematic market intelligence. With UMBRAL, your independent agency accesses the same level of information. Without hiring anyone full-time.</span></div>
     </div>
   </div>
 </section>
 
 <!-- ── SERVICIOS ── -->
 <section class="sec gris" id="servicios">
-  <p class="sec-eyebrow reveal">Servicios</p>
-  <h2 class="sec-titulo reveal">Dos informes.<br>Una imagen completa.</h2>
-  <p class="sec-desc reveal">El Informe de Mercado y el Informe Competitivo responden a preguntas distintas. Puedes contratar uno o los dos. Juntos, te dan la visión completa de tu posición y tu entorno.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">Servicios</span><span class="en-text">Services</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Cuatro informes.<br>Una inteligencia completa.</span><span class="en-text">Four reports.<br>Complete intelligence.</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">Informe de Mercado, Informe Competitivo, Argumentario por Inmueble e Informe de Orientación de Compra. Cada uno responde a una pregunta distinta. Puedes contratar el que necesitas o combinarlos.</span><span class="en-text">Market Report, Competitive Report, Property Commercial Brief, and Buyer Orientation Report. Each answers a different question. Subscribe to one or combine them.</span></p>
   <div class="servicios-grid">
 
     <!-- INFORME DE MERCADO -->
     <div class="servicio-card reveal">
-      <span class="servicio-tag">IM · Informe de Mercado</span>
-      <h3 class="servicio-titulo">¿Qué pasa<br>en mi mercado?</h3>
-      <p class="servicio-subtitulo">La foto real de tu zona. Cada mes o cuando lo necesites.</p>
-      <p class="servicio-desc">Datos de precios de oferta y de cierre real, perfil del comprador activo, stock disponible, tasa de absorción y alertas de oportunidad. La información que las grandes franquicias tienen y tú aún no.</p>
+      <span class="servicio-tag"><span class="es-text">IM · Informe de Mercado</span><span class="en-text">IM · Market Report</span></span>
+      <h3 class="servicio-titulo"><span class="es-text">¿Qué pasa<br>en mi mercado?</span><span class="en-text">What's happening<br>in my market?</span></h3>
+      <p class="servicio-subtitulo"><span class="es-text">La foto real de tu zona. Cada mes o cuando lo necesites.</span><span class="en-text">The real picture of your area. Monthly or on demand.</span></p>
+      <p class="servicio-desc"><span class="es-text">Datos de precios de oferta y de cierre real, perfil del comprador activo, stock disponible, tasa de absorción y alertas de oportunidad. La información que las grandes franquicias tienen y tú aún no.</span><span class="en-text">Listing and actual closing price data, active buyer profile, available stock, absorption rate, and opportunity alerts. The intelligence large franchises have and you don't yet.</span></p>
       <ul class="servicio-lista">
         <li>Precios de oferta y cierre real en tu zona (diferencial Registradores vs. portal)</li>
         <li>Perfil del comprador activo: nacionalidad, presupuesto, señal macro</li>
@@ -779,16 +797,16 @@ footer {
       </ul>
       <div class="servicio-precio-wrap">
         <div class="servicio-precio"><sup>€</sup>290</div>
-        <div class="servicio-precio-nota">Desde 290 €/mes (plan anual) · IVA no incluido</div>
+        <div class="servicio-precio-nota"><span class="es-text">Desde 290 €/mes (plan anual) · IVA no incluido</span><span class="en-text">From €290/month (annual plan) · VAT not included</span></div>
       </div>
     </div>
 
     <!-- INFORME COMPETITIVO -->
     <div class="servicio-card reveal">
-      <span class="servicio-tag">IC · Informe Competitivo</span>
-      <h3 class="servicio-titulo">¿Qué hace<br>mi competencia?</h3>
-      <p class="servicio-subtitulo">Tu posición real frente a quien compite contigo.</p>
-      <p class="servicio-desc">Análisis profundo de tus competidores directos: qué publican, en qué portales están, qué argumentario usan, cuál es su cuota de mercado. Con datos, sin impresiones.</p>
+      <span class="servicio-tag"><span class="es-text">IC · Informe Competitivo</span><span class="en-text">IC · Competitive Report</span></span>
+      <h3 class="servicio-titulo"><span class="es-text">¿Qué hace<br>mi competencia?</span><span class="en-text">What are my<br>competitors doing?</span></h3>
+      <p class="servicio-subtitulo"><span class="es-text">Tu posición real frente a quien compite contigo.</span><span class="en-text">Your real position against those competing with you.</span></p>
+      <p class="servicio-desc"><span class="es-text">Análisis profundo de tus competidores directos: qué publican, en qué portales están, qué argumentario usan, cuál es su cuota de mercado. Con datos, sin impresiones.</span><span class="en-text">Deep analysis of your direct competitors: what they list, which portals they use, what pitch they apply, and their market share. Data-driven, no guesswork.</span></p>
       <ul class="servicio-lista">
         <li>Análisis de hasta 5 competidores directos nombrados por ti</li>
         <li>Cartera activa: propiedades publicadas, precio medio, tiempo en mercado</li>
@@ -800,23 +818,64 @@ footer {
       </ul>
       <div class="servicio-precio-wrap">
         <div class="servicio-precio"><sup>€</sup>350</div>
-        <div class="servicio-precio-nota">Desde 350 €/mes (plan anual) · IVA no incluido</div>
+        <div class="servicio-precio-nota"><span class="es-text">Desde 350 €/mes (plan anual) · IVA no incluido</span><span class="en-text">From €350/month (annual plan) · VAT not included</span></div>
+      </div>
+    </div>
+
+    <!-- ACTIVO -->
+    <div class="servicio-card reveal">
+      <span class="servicio-tag"><span class="es-text">AC · Argumentario por Inmueble</span><span class="en-text">AC · Property Commercial Brief</span></span>
+      <h3 class="servicio-titulo"><span class="es-text">¿Qué argumentos<br>tiene este piso?</span><span class="en-text">What are the selling points<br>of this property?</span></h3>
+      <p class="servicio-subtitulo"><span class="es-text">Inteligencia comercial sobre un inmueble concreto. Sin suscripción.</span><span class="en-text">Commercial intelligence on a specific property. No subscription.</span></p>
+      <p class="servicio-desc"><span class="es-text">Un informe por encargo sobre una propiedad específica: datos catastrales, entorno, seguridad, mercado, proyección de zona y rentabilidad vacacional. Ocho bloques de datos convertidos en argumentos listos para la visita o el anuncio.</span><span class="en-text">A bespoke report on a specific property: cadastral data, surroundings, security, market, area outlook, and holiday rental yield. Eight data blocks converted into ready-to-use arguments for the viewing or the listing.</span></p>
+      <ul class="servicio-lista">
+        <li>Ficha catastral y situación urbanística verificada</li>
+        <li>Entorno: servicios, accesos, calidad de vida y seguridad</li>
+        <li>Precio de mercado real vs. precio de oferta del portal</li>
+        <li>Proyección de zona: inversión pública, tendencia de precios</li>
+        <li>Rentabilidad vacacional estimada con fuentes públicas</li>
+        <li>Argumentario final con los 7 datos más sólidos del inmueble</li>
+      </ul>
+      <p style="margin-top:16px; font-size:13px; color:var(--gris-texto); font-style:italic;"><span class="es-text">Para agentes inmobiliarios que presentan un inmueble en las próximas 48–72 horas, y para particulares que quieren vender con datos en la mano.</span><span class="en-text">For estate agents presenting a property in the next 48–72 hours, and for private sellers who want to go to market with data.</span></p>
+      <div class="servicio-precio-wrap">
+        <div class="servicio-precio"><sup>€</sup>75</div>
+        <div class="servicio-precio-nota"><span class="es-text">Pago único por inmueble · Entrega en PDF por email · IVA no incluido</span><span class="en-text">One-off per property · PDF by email · VAT not included</span></div>
+      </div>
+    </div>
+
+    <!-- DUCHT / ORIENTACIÓN COMPRADOR -->
+    <div class="servicio-card reveal">
+      <span class="servicio-tag"><span class="es-text">OC · Orientación de Compra</span><span class="en-text">OC · Buyer Orientation Report</span></span>
+      <h3 class="servicio-titulo"><span class="es-text">¿Dónde comprar<br>en España?</span><span class="en-text">Where to buy<br>in Spain?</span></h3>
+      <p class="servicio-subtitulo"><span class="es-text">Para compradores no residentes y los intermediarios que les asesoran.</span><span class="en-text">For non-resident buyers and the advisors who guide them.</span></p>
+      <p class="servicio-desc"><span class="es-text">Informe independiente que recomienda zonas geográficas concretas del territorio español en función del perfil del comprador: presupuesto, uso previsto, entorno, clima, servicios, comunidad extranjera y rentabilidad. Producido antes de que el comprador contacte con ninguna agencia.</span><span class="en-text">An independent report recommending specific areas of Spain based on the buyer's profile: budget, intended use, surroundings, climate, services, expat community, and rental yield. Produced before the buyer contacts any agency.</span></p>
+      <ul class="servicio-lista">
+        <li>Análisis de 3 a 5 zonas candidatas seleccionadas por perfil, no por catálogo</li>
+        <li>Precios reales, demanda extranjera y velocidad de venta por zona</li>
+        <li>Alertas urbanísticas: PGOU, zonas de riesgo, suelo protegido</li>
+        <li>Servicios prioritarios verificados: colegios internacionales, hospitales, aeropuertos</li>
+        <li>Comunidad neerlandesa, belga o alemana presente en la zona</li>
+        <li>Rentabilidad vacacional estimada si el uso incluye alquiler</li>
+        <li>Disponible en español e inglés</li>
+      </ul>
+      <p style="margin-top:16px; font-size:13px; color:var(--gris-texto); font-style:italic;"><span class="es-text">Para agencias extranjeras, asesores independientes e intermediarios que acompañan a clientes europeos en su proceso de compra en España.</span><span class="en-text">For foreign agencies, independent advisors, and intermediaries accompanying European clients in their purchase process in Spain.</span></p>
+      <div class="servicio-precio-wrap">
+        <div class="servicio-precio"><sup>€</sup>200</div>
+        <div class="servicio-precio-nota"><span class="es-text">Desde 200 € por informe según complejidad · Entrega en PDF · IVA no incluido</span><span class="en-text">From €200 per report depending on complexity · PDF delivery · VAT not included</span></div>
       </div>
     </div>
 
   </div>
 </section>
-
-<!-- ── PRECIOS ── -->
 <section class="sec" id="precios">
-  <p class="sec-eyebrow reveal">Planes y precios</p>
-  <h2 class="sec-titulo reveal">Elige tu nivel<br>de compromiso.</h2>
-  <p class="sec-desc reveal">Tres modalidades para cada servicio. Puntual cuando lo necesitas. Trimestral si quieres seguimiento sin comprometerte a doce meses. Anual si los datos son tu ventaja permanente.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">Planes y precios</span><span class="en-text">Plans & pricing</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Elige tu nivel<br>de compromiso.</span><span class="en-text">Choose your level<br>of commitment.</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">Tres modalidades para cada servicio. Puntual cuando lo necesitas. Trimestral si quieres seguimiento sin comprometerte a doce meses. Anual si los datos son tu ventaja permanente.</span><span class="en-text">Three options per service. One-off when you need it. Quarterly if you want continuity without a 12-month commitment. Annual if data is your permanent competitive edge.</span></p>
 
   <div class="reveal">
     <div class="precios-tabs">
-      <button class="precio-tab active" onclick="switchTab(this,'tab-im')">Informe de Mercado (IM)</button>
-      <button class="precio-tab" onclick="switchTab(this,'tab-ic')">Informe Competitivo (IC)</button>
+      <button class="precio-tab active" onclick="switchTab(this,'tab-im')"><span class="es-text">Informe de Mercado (IM)</span><span class="en-text">Market Report (IM)</span></button>
+      <button class="precio-tab" onclick="switchTab(this,'tab-ic')"><span class="es-text">Informe Competitivo (IC)</span><span class="en-text">Competitive Report (IC)</span></button>
     </div>
 
     <!-- TABLA IM -->
@@ -924,15 +983,13 @@ footer {
     </div>
   </div>
 
-  <p style="margin-top:24px; font-size:12px; color:var(--gris-claro); line-height:1.6;">
-    Precios sin IVA. Para zonas con especial complejidad de datos puede aplicarse un suplemento comunicado en el presupuesto previo. Precios actualizables anualmente con preaviso de 30 días.
-  </p>
+  <p style="margin-top:24px; font-size:12px; color:var(--gris-claro); line-height:1.6;"><span class="es-text">Precios sin IVA. Para zonas con especial complejidad de datos puede aplicarse un suplemento comunicado en el presupuesto previo. Precios actualizables anualmente con preaviso de 30 días.</span><span class="en-text">Prices exclude VAT. Areas with high data complexity may carry a supplement, communicated in advance. Prices may be updated annually with 30 days notice.</span></p>
 </section>
 
 <!-- ── PARA QUIÉN ── -->
 <section class="sec" id="publico">
-  <p class="sec-eyebrow reveal">A quién va dirigido</p>
-  <h2 class="sec-titulo reveal">Un servicio pensado<br>para quien decide.</h2>
+  <p class="sec-eyebrow reveal"><span class="es-text">A quién va dirigido</span><span class="en-text">Who it's for</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Un servicio pensado<br>para quien decide.</span><span class="en-text">A service designed<br>for those who decide.</span></h2>
   <p class="sec-desc reveal">No somos una consultora de alta tarifa. Somos el analista de mercado que tu agencia no puede contratar a jornada completa — pero que ahora puede tener, con datos reales, a precio de suscripción accesible.</p>
   <div class="perfiles-grid">
     <div class="perfil reveal">
@@ -970,99 +1027,99 @@ footer {
 
 <!-- ── METODOLOGÍA ── -->
 <section class="sec gris" id="metodologia">
-  <p class="sec-eyebrow reveal">Proceso</p>
-  <h2 class="sec-titulo reveal">El ciclo de inteligencia.<br>Sin atajos.</h2>
-  <p class="sec-desc reveal">Rigor metodológico en cada fase. Describes lo que necesitas saber; nosotros lo estructuramos y lo ejecutamos con las herramientas y fuentes del sector.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">Proceso</span><span class="en-text">Process</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">El ciclo de inteligencia.<br>Sin atajos.</span><span class="en-text">The intelligence cycle.<br>No shortcuts.</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">Rigor metodológico en cada fase. Describes lo que necesitas saber; nosotros lo estructuramos y lo ejecutamos con las herramientas y fuentes del sector.</span><span class="en-text">Methodological rigour at every stage. You define what you need to know; we structure it and execute it using the right tools and sector sources.</span></p>
   <div class="pasos-wrap">
     <div class="pasos">
       <div class="paso reveal">
         <div class="paso-n">I</div>
         <div>
-          <div class="paso-t">Definición del requerimiento</div>
-          <p class="paso-d">Antes de buscar, definimos exactamente qué se necesita saber, para qué decisión y con qué nivel de certeza. El requerimiento mal definido produce análisis inútil.</p>
-          <span class="paso-badge">Consulta inicial confidencial</span>
+          <div class="paso-t"><span class="es-text">Definición del requerimiento</span><span class="en-text">Requirement definition</span></div>
+          <p class="paso-d"><span class="es-text">Antes de buscar, definimos exactamente qué se necesita saber, para qué decisión y con qué nivel de certeza. El requerimiento mal definido produce análisis inútil.</span><span class="en-text">Before searching, we define exactly what needs to be known, for which decision, and at what level of certainty. A poorly defined requirement produces useless analysis.</span></p>
+          <span class="paso-badge"><span class="es-text">Consulta inicial confidencial</span><span class="en-text">Confidential initial consultation</span></span>
         </div>
       </div>
       <div class="paso reveal">
         <div class="paso-n">II</div>
         <div>
-          <div class="paso-t">Obtención de fuentes verificadas</div>
-          <p class="paso-d">Registradores, MITMA, Idealista Data, AirDNA Pro, BORME, hemeroteca especializada, portales inmobiliarios y fuentes sectoriales. Solo datos con trazabilidad.</p>
-          <span class="paso-badge">Metodología OSINT + sectorial</span>
+          <div class="paso-t"><span class="es-text">Obtención de fuentes verificadas</span><span class="en-text">Retrieval of verified sources</span></div>
+          <p class="paso-d"><span class="es-text">Registradores, MITMA, Idealista Data, AirDNA Pro, BORME, hemeroteca especializada, portales inmobiliarios y fuentes sectoriales. Solo datos con trazabilidad.</span><span class="en-text">Land registries, MITMA, Idealista Data, AirDNA Pro, BORME, specialist press archives, real estate portals and sector sources. Only data with full traceability.</span></p>
+          <span class="paso-badge"><span class="es-text">Metodología OSINT + sectorial</span><span class="en-text">OSINT + sector methodology</span></span>
         </div>
       </div>
       <div class="paso reveal">
         <div class="paso-n">III</div>
         <div>
-          <div class="paso-t">Análisis estructurado y contraste</div>
-          <p class="paso-d">PESTEL, Porter, DAFO, benchmarking de cartera y matriz de posicionamiento competitivo. Cada dato se contrasta en al menos dos fuentes independientes.</p>
-          <span class="paso-badge">Análisis multicapa</span>
+          <div class="paso-t"><span class="es-text">Análisis estructurado y contraste</span><span class="en-text">Structured analysis and cross-checking</span></div>
+          <p class="paso-d"><span class="es-text">PESTEL, Porter, DAFO, benchmarking de cartera y matriz de posicionamiento competitivo. Cada dato se contrasta en al menos dos fuentes independientes.</span><span class="en-text">PESTEL, Porter, SWOT, portfolio benchmarking and competitive positioning matrix. Every data point is cross-checked against at least two independent sources.</span></p>
+          <span class="paso-badge"><span class="es-text">Análisis multicapa</span><span class="en-text">Multi-layer analysis</span></span>
         </div>
       </div>
       <div class="paso reveal">
         <div class="paso-n">IV</div>
         <div>
-          <div class="paso-t">Informe accionable en 5–7 días</div>
-          <p class="paso-d">El informe final incluye resumen ejecutivo para dirección, datos con fuentes documentadas y recomendaciones estratégicas listas para implementar esta semana.</p>
-          <span class="paso-badge">Entrega verificada y accionable</span>
+          <div class="paso-t"><span class="es-text">Informe accionable en 5–7 días</span><span class="en-text">Actionable report in 5–7 days</span></div>
+          <p class="paso-d"><span class="es-text">El informe final incluye resumen ejecutivo para dirección, datos con fuentes documentadas y recomendaciones estratégicas listas para implementar esta semana.</span><span class="en-text">The final report includes an executive summary for management, data with documented sources, and strategic recommendations ready to implement this week.</span></p>
+          <span class="paso-badge"><span class="es-text">Entrega verificada y accionable</span><span class="en-text">Verified and actionable delivery</span></span>
         </div>
       </div>
     </div>
     <div class="proceso-nota reveal">
-      <div class="proceso-nota-head">Estándares de calidad analítica</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Distinción explícita entre datos verificados, estimaciones e hipótesis de trabajo</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Contraste mínimo de dos fuentes independientes para cada dato relevante</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Señalización activa de incoherencias y contradicciones entre fuentes</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Búsqueda deliberada de evidencia contraria antes de cada conclusión</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Separación rigurosa entre correlación y causalidad</div>
-      <div class="proceso-item"><div class="proceso-dot"></div>Revisión humana final antes de cada entrega. Sin excepciones.</div>
-      <div class="proceso-item" style="border-bottom:none">Solo fuentes legales y métodos éticamente irreprochables</div>
+      <div class="proceso-nota-head"><span class="es-text">Estándares de calidad analítica</span><span class="en-text">Analytical quality standards</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Distinción explícita entre datos verificados, estimaciones e hipótesis de trabajo</span><span class="en-text">Explicit distinction between verified data, estimates and working hypotheses</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Contraste mínimo de dos fuentes independientes para cada dato relevante</span><span class="en-text">Minimum cross-check of two independent sources for each relevant data point</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Señalización activa de incoherencias y contradicciones entre fuentes</span><span class="en-text">Active flagging of inconsistencies and contradictions between sources</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Búsqueda deliberada de evidencia contraria antes de cada conclusión</span><span class="en-text">Deliberate search for contrary evidence before each conclusion</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Separación rigurosa entre correlación y causalidad</span><span class="en-text">Rigorous separation between correlation and causality</span></div>
+      <div class="proceso-item"><div class="proceso-dot"></div><span class="es-text">Revisión humana final antes de cada entrega. Sin excepciones.</span><span class="en-text">Final human review before every delivery. No exceptions.</span></div>
+      <div class="proceso-item" style="border-bottom:none"><span class="es-text">Solo fuentes legales y métodos éticamente irreprochables</span><span class="en-text">Only legal sources and ethically irreproachable methods</span></div>
     </div>
   </div>
 </section>
 
 <!-- ── GARANTÍAS ── -->
 <section class="sec oscuro">
-  <p class="sec-eyebrow reveal">Principios</p>
-  <h2 class="sec-titulo reveal">Cómo trabajamos.</h2>
-  <p class="sec-desc reveal">Rigor metodológico, marco legal y transparencia en cada encargo. Sin excepciones.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">Principios</span><span class="en-text">Principles</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Cómo trabajamos.</span><span class="en-text">How we work.</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">Rigor metodológico, marco legal y transparencia en cada encargo. Sin excepciones.</span><span class="en-text">Methodological rigour, legal framework and transparency in every assignment. No exceptions.</span></p>
   <div class="garantias-grid">
     <div class="garantia reveal">
       <div class="garantia-icono">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <div class="garantia-t">Solo fuentes legales</div>
-      <p class="garantia-d">Fuentes OSINT públicas y verificables. Nunca se emplean técnicas intrusivas ni métodos de obtención ilícita.</p>
+      <div class="garantia-t"><span class="es-text">Solo fuentes legales</span><span class="en-text">Legal sources only</span></div>
+      <p class="garantia-d"><span class="es-text">Fuentes OSINT públicas y verificables. Nunca se emplean técnicas intrusivas ni métodos de obtención ilícita.</span><span class="en-text">Public and verifiable OSINT sources. No intrusive techniques or unlawful data-gathering methods are ever used.</span></p>
     </div>
     <div class="garantia reveal">
       <div class="garantia-icono">
         <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
       </div>
-      <div class="garantia-t">Datos contrastados</div>
-      <p class="garantia-d">Cada dato relevante se confirma en al menos dos fuentes independientes. Diferenciamos hechos verificados de estimaciones e hipótesis.</p>
+      <div class="garantia-t"><span class="es-text">Datos contrastados</span><span class="en-text">Cross-checked data</span></div>
+      <p class="garantia-d"><span class="es-text">Cada dato relevante se confirma en al menos dos fuentes independientes. Diferenciamos hechos verificados de estimaciones e hipótesis.</span><span class="en-text">Every relevant data point is confirmed by at least two independent sources. We distinguish verified facts from estimates and hypotheses.</span></p>
     </div>
     <div class="garantia reveal">
       <div class="garantia-icono">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
-      <div class="garantia-t">Confidencialidad RGPD</div>
-      <p class="garantia-d">Tu información se trata conforme al Reglamento Europeo y se usa exclusivamente para gestionar el encargo. No se cede a terceros.</p>
+      <div class="garantia-t"><span class="es-text">Confidencialidad RGPD</span><span class="en-text">GDPR confidentiality</span></div>
+      <p class="garantia-d"><span class="es-text">Tu información se trata conforme al Reglamento Europeo y se usa exclusivamente para gestionar el encargo. No se cede a terceros.</span><span class="en-text">Your information is processed in accordance with the European Regulation and used solely to manage the assignment. It is never shared with third parties.</span></p>
     </div>
     <div class="garantia reveal">
       <div class="garantia-icono">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <div class="garantia-t">Plazos reales</div>
-      <p class="garantia-d">El plazo se comunica antes de comenzar. Si el encargo requiere más tiempo, se avisa con antelación. Sin sorpresas.</p>
+      <div class="garantia-t"><span class="es-text">Plazos reales</span><span class="en-text">Realistic deadlines</span></div>
+      <p class="garantia-d"><span class="es-text">El plazo se comunica antes de comenzar. Si el encargo requiere más tiempo, se avisa con antelación. Sin sorpresas.</span><span class="en-text">The deadline is communicated before we start. If the assignment requires more time, you are notified in advance. No surprises.</span></p>
     </div>
   </div>
 </section>
 
 <!-- ── EQUIPO ── -->
 <section class="sec" id="equipo">
-  <p class="sec-eyebrow reveal">El equipo</p>
-  <h2 class="sec-titulo reveal">Personas detrás<br>de cada informe.</h2>
-  <p class="sec-desc reveal">Cada análisis lleva detrás un revisor humano. No publicamos informes generados automáticamente sin validación experta.</p>
+  <p class="sec-eyebrow reveal"><span class="es-text">El equipo</span><span class="en-text">The team</span></p>
+  <h2 class="sec-titulo reveal"><span class="es-text">Personas detrás<br>de cada informe.</span><span class="en-text">People behind<br>every report.</span></h2>
+  <p class="sec-desc reveal"><span class="es-text">Cada análisis lleva detrás un revisor humano. No publicamos informes generados automáticamente sin validación experta.</span><span class="en-text">Every analysis has a human reviewer behind it. We do not publish automatically generated reports without expert validation.</span></p>
   <div class="equipo-grid">
 
     <!-- JUAN -->
@@ -1072,18 +1129,18 @@ footer {
       </div>
       <div class="miembro-info">
         <div class="miembro-nombre">Juan Fenollar</div>
-        <div class="miembro-rol">Director · Analista Principal</div>
+        <div class="miembro-rol"><span class="es-text">Director · Analista Principal</span><span class="en-text">Director · Lead Analyst</span></div>
         <p class="miembro-bio">
-          Más de 20 años de experiencia en estrategia empresarial, análisis competitivo y mercados locales en la Comunitat Valenciana. Ha liderado proyectos de inteligencia de negocio para empresas industriales, promotoras y agencias inmobiliarias. Fundador de UMBRAL y responsable de cada informe entregado.
+          <span class="es-text">Más de 20 años de experiencia en estrategia empresarial, análisis competitivo y mercados locales en la Comunitat Valenciana. Ha liderado proyectos de inteligencia de negocio para empresas industriales, promotoras y agencias inmobiliarias. Fundador de UMBRAL y responsable de cada informe entregado.</span><span class="en-text">Over 20 years of experience in business strategy, competitive analysis and local markets in the Valencia Region. He has led business intelligence projects for industrial companies, developers and real estate agencies. Founder of UMBRAL and responsible for every report delivered.</span>
         </p>
         <p class="miembro-bio">
-          Su enfoque combina metodología analítica rigurosa con conocimiento profundo del tejido empresarial e inmobiliario valenciano. Cada informe pasa por su revisión antes de ser entregado al cliente.
+          <span class="es-text">Su enfoque combina metodología analítica rigurosa con conocimiento profundo del tejido empresarial e inmobiliario valenciano. Cada informe pasa por su revisión antes de ser entregado al cliente.</span><span class="en-text">His approach combines rigorous analytical methodology with deep knowledge of the Valencian business and real estate landscape. Every report passes through his review before being delivered to the client.</span>
         </p>
         <div class="miembro-tags">
-          <span class="mtag">Estrategia</span>
-          <span class="mtag">Inteligencia competitiva</span>
-          <span class="mtag">Mercado inmobiliario</span>
-          <span class="mtag">Comunitat Valenciana</span>
+          <span class="mtag"><span class="es-text">Estrategia</span><span class="en-text">Strategy</span></span>
+          <span class="mtag"><span class="es-text">Inteligencia competitiva</span><span class="en-text">Competitive intelligence</span></span>
+          <span class="mtag"><span class="es-text">Mercado inmobiliario</span><span class="en-text">Real estate market</span></span>
+          <span class="mtag"><span class="es-text">Comunitat Valenciana</span><span class="en-text">Valencia Region</span></span>
         </div>
       </div>
     </div>
@@ -1095,17 +1152,17 @@ footer {
       </div>
       <div class="miembro-info">
         <div class="miembro-nombre">Fausto E. Soto</div>
-        <div class="miembro-rol">Data Scientist · Analista Cuantitativo</div>
+        <div class="miembro-rol"><span class="es-text">Data Scientist · Analista Cuantitativo</span><span class="en-text">Data Scientist · Quantitative Analyst</span></div>
         <p class="miembro-bio">
-          Ingeniero Industrial con más de 10 años de experiencia en análisis cuantitativo y ciencia de datos. Especialista en modelado predictivo, Machine Learning y optimización de decisiones con impacto financiero medible. OCI Certified.
+          <span class="es-text">Ingeniero Industrial con más de 10 años de experiencia en análisis cuantitativo y ciencia de datos. Especialista en modelado predictivo, Machine Learning y optimización de decisiones con impacto financiero medible. OCI Certified.</span><span class="en-text">Industrial Engineer with over 10 years of experience in quantitative analysis and data science. Specialist in predictive modelling, Machine Learning and decision optimisation with measurable financial impact. OCI Certified.</span>
         </p>
         <p class="miembro-bio">
-          En UMBRAL desarrolla los modelos de análisis cuantitativo que sustentan los informes: scoring de zonas, análisis de absorción, predicción de tendencias y automatización de ingesta de datos desde múltiples fuentes. Su trabajo transforma datos brutos en señales accionables.
+          <span class="es-text">En UMBRAL desarrolla los modelos de análisis cuantitativo que sustentan los informes: scoring de zonas, análisis de absorción, predicción de tendencias y automatización de ingesta de datos desde múltiples fuentes. Su trabajo transforma datos brutos en señales accionables.</span><span class="en-text">At UMBRAL he develops the quantitative analysis models underpinning the reports: zone scoring, absorption analysis, trend prediction and automated data ingestion from multiple sources. His work transforms raw data into actionable signals.</span>
         </p>
         <div class="miembro-tags">
               <span class="mtag">Data Science</span>
               <span class="mtag">Machine Learning</span>
-              <span class="mtag">Agentes IA</span>
+              <span class="mtag"><span class="es-text">Agentes IA</span><span class="en-text">AI Agents</span></span>
               <span class="mtag">OCI Certified</span>
               <span class="mtag">SQL / Python</span>
             </div>
@@ -1118,58 +1175,60 @@ footer {
 <!-- ── CONTACTO ── -->
 <div class="contacto-wrap" id="contacto">
   <div class="contacto-info">
-    <p class="sec-eyebrow reveal">Contacto</p>
+    <p class="sec-eyebrow reveal"><span class="es-text">Contacto</span><span class="en-text">Contact</span></p>
     <h2 class="sec-titulo reveal" style="margin-bottom:20px">
-      Solicita tu<br>informe.
+      <span class="es-text">Solicita tu<br>informe.</span><span class="en-text">Request your<br>report.</span>
     </h2>
     <p class="contacto-intro reveal">
-      Cuéntanos tu zona de operación, qué tipo de informe te interesa y si prefieres empezar puntual o con suscripción. No hace falta incluir información confidencial en este primer contacto. Recibirás respuesta en menos de 24 horas hábiles.
+      <span class="es-text">Cuéntanos tu zona de operación, qué tipo de informe te interesa y si prefieres empezar puntual o con suscripción. No hace falta incluir información confidencial en este primer contacto. Recibirás respuesta en menos de 24 horas hábiles.</span><span class="en-text">Tell us your area of operation, which type of report you are interested in, and whether you prefer a one-off or a subscription. No confidential information is needed at this stage. You will receive a reply within 24 business hours.</span>
     </p>
     <div class="contacto-datos reveal">
       <div class="dato">
-        <span class="dato-l">Respuesta</span>
-        <span class="dato-v">Menos de 24 horas hábiles</span>
+        <span class="dato-l"><span class="es-text">Respuesta</span><span class="en-text">Response</span></span>
+        <span class="dato-v"><span class="es-text">Menos de 24 horas hábiles</span><span class="en-text">Within 24 business hours</span></span>
       </div>
       <div class="dato">
-        <span class="dato-l">Confidencialidad</span>
-        <span class="dato-v">Tus datos se usan exclusivamente para gestionar el encargo. RGPD.</span>
+        <span class="dato-l"><span class="es-text">Confidencialidad</span><span class="en-text">Confidentiality</span></span>
+        <span class="dato-v"><span class="es-text">Tus datos se usan exclusivamente para gestionar el encargo. RGPD.</span><span class="en-text">Your data is used solely to manage the assignment. GDPR.</span></span>
       </div>
       <div class="dato">
-        <span class="dato-l">Ámbito geográfico</span>
-        <span class="dato-v">Comunitat Valenciana · España</span>
+        <span class="dato-l"><span class="es-text">Ámbito geográfico</span><span class="en-text">Geographic scope</span></span>
+        <span class="dato-v"><span class="es-text">Comunitat Valenciana · España</span><span class="en-text">Valencia Region · Spain</span></span>
       </div>
       <div class="dato">
-        <span class="dato-l">Email directo</span>
+        <span class="dato-l"><span class="es-text">Email directo</span><span class="en-text">Direct email</span></span>
         <span class="dato-v">inteligencia@umbralverificacion.com</span>
       </div>
     </div>
   </div>
 
   <div class="form-box reveal">
-    <h3 class="form-titulo">Solicitud de informe</h3>
+    <h3 class="form-titulo"><span class="es-text">Solicitud de informe</span><span class="en-text">Report request</span></h3>
     <div class="form-row">
-      <div class="fg"><label>Nombre *</label><input type="text" id="f-nombre" placeholder="Tu nombre"></div>
-      <div class="fg"><label>Agencia / Empresa</label><input type="text" id="f-empresa" placeholder="Nombre de la agencia"></div>
+      <div class="fg"><label><span class="es-text">Nombre *</span><span class="en-text">Name *</span></label><input type="text" id="f-nombre" placeholder="Tu nombre / Your name"></div>
+      <div class="fg"><label><span class="es-text">Agencia / Empresa</span><span class="en-text">Agency / Company</span></label><input type="text" id="f-empresa" placeholder="Nombre de la agencia / Agency name"></div>
     </div>
-    <div class="fg"><label>Email de contacto *</label><input type="email" id="f-email" placeholder="correo@agencia.com"></div>
-    <div class="fg"><label>Teléfono (opcional)</label><input type="tel" id="f-tel" placeholder="+34 ..."></div>
+    <div class="fg"><label><span class="es-text">Email de contacto *</span><span class="en-text">Contact email *</span></label><input type="email" id="f-email" placeholder="correo@agencia.com"></div>
+    <div class="fg"><label><span class="es-text">Teléfono (opcional)</span><span class="en-text">Phone (optional)</span></label><input type="tel" id="f-tel" placeholder="+34 / +31 ..."></div>
     <div class="fg">
-      <label>Tipo de servicio</label>
+      <label><span class="es-text">Tipo de servicio</span><span class="en-text">Service type</span></label>
       <select id="f-servicio">
-        <option value="">Selecciona una opción</option>
-        <option>IM Puntual — Informe de Mercado (490 €)</option>
-        <option>IM Trimestral — Informe de Mercado (350 €/informe)</option>
-        <option>IM Anual — Informe de Mercado (290 €/mes)</option>
-        <option>IC Puntual — Informe Competitivo (590 €)</option>
-        <option>IC Trimestral — Informe Competitivo (420 €/informe)</option>
-        <option>IC Anual — Informe Competitivo (350 €/mes)</option>
+        <option value=""><span class="es-text">Selecciona una opción</span></option>
+        <option data-es="IM Puntual — Informe de Mercado (490 €)" data-en="IM One-off — Market Report (€490)">IM Puntual — Informe de Mercado (490 €)</option>
+        <option data-es="IM Trimestral — Informe de Mercado (350 €/informe)" data-en="IM Quarterly — Market Report (€350/report)">IM Trimestral — Informe de Mercado (350 €/informe)</option>
+        <option data-es="IM Anual — Informe de Mercado (290 €/mes)" data-en="IM Annual — Market Report (€290/month)">IM Anual — Informe de Mercado (290 €/mes)</option>
+        <option data-es="IC Puntual — Informe Competitivo (590 €)" data-en="IC One-off — Competitive Report (€590)">IC Puntual — Informe Competitivo (590 €)</option>
+        <option data-es="IC Trimestral — Informe Competitivo (420 €/informe)" data-en="IC Quarterly — Competitive Report (€420/report)">IC Trimestral — Informe Competitivo (420 €/informe)</option>
+        <option data-es="IC Anual — Informe Competitivo (350 €/mes)" data-en="IC Annual — Competitive Report (€350/month)">IC Anual — Informe Competitivo (350 €/mes)</option>
+        <option>AC — Argumentario por Inmueble (75 €)</option>
+        <option data-es="OC — Orientación de Compra (desde 200 €)" data-en="OC — Buyer Orientation Report (from €200)">OC — Orientación de Compra (desde 200 €)</option>
         
-        <option>No lo sé aún — necesito orientación</option>
+        <option data-es="No lo sé aún — necesito orientación" data-en="Not sure yet — I need guidance">No lo sé aún — necesito orientación</option>
       </select>
     </div>
-    <div class="fg"><label>Zona de operación y encargo *</label><textarea id="f-desc" placeholder="Indícanos tu zona geográfica (municipio, área…), el tipo de inmueble que trabajas y brevemente qué necesitas saber. No hace falta incluir información confidencial."></textarea></div>
-    <button class="form-submit" id="form-btn" type="button" onclick="enviarFormulario()">Solicitar informe</button>
-    <p class="form-rgpd">Tus datos se tratarán conforme al RGPD exclusivamente para gestionar tu solicitud y no serán cedidos a terceros.</p>
+    <div class="fg"><label><span class="es-text">Zona de operación y encargo *</span><span class="en-text">Operating area and brief *</span></label><textarea id="f-desc" placeholder="Indícanos tu zona geográfica (municipio, área…), el tipo de inmueble que trabajas y brevemente qué necesitas saber. No hace falta incluir información confidencial. / Tell us your geographic area (town, zone…), the property type you work with and briefly what you need to know. No confidential information needed."></textarea></div>
+    <button class="form-submit" id="form-btn" type="button" onclick="enviarFormulario()"><span class="es-text">Solicitar informe</span><span class="en-text">Request a report</span></button>
+    <p class="form-rgpd"><span class="es-text">Tus datos se tratarán conforme al RGPD exclusivamente para gestionar tu solicitud y no serán cedidos a terceros.</span><span class="en-text">Your data will be processed in accordance with GDPR solely to manage your enquiry and will not be shared with third parties.</span></p>
   </div>
 </div>
 
@@ -1224,9 +1283,10 @@ async function enviarFormulario() {
   const desc = document.getElementById('f-desc').value.trim();
 
   if (!nombre || !email || !desc) {
-    btn.textContent = '⚠ Completa los campos obligatorios';
+    const isEN = document.documentElement.getAttribute('data-lang') === 'en';
+    btn.textContent = isEN ? '⚠ Please fill in all required fields' : '⚠ Completa los campos obligatorios';
     btn.style.background = '#8b3a1a';
-    setTimeout(() => { btn.textContent = 'Solicitar informe'; btn.style.background = ''; }, 3000);
+    setTimeout(() => { btn.textContent = isEN ? 'Request a report' : 'Solicitar informe'; btn.style.background = ''; }, 3000);
     return;
   }
 
@@ -1234,7 +1294,8 @@ async function enviarFormulario() {
   const tel = document.getElementById('f-tel').value.trim();
   const servicio = document.getElementById('f-servicio').value;
 
-  btn.textContent = 'Enviando…'; btn.style.background = '#444'; btn.disabled = true;
+  const isEN = document.documentElement.getAttribute('data-lang') === 'en';
+  btn.textContent = isEN ? 'Sending…' : 'Enviando…'; btn.style.background = '#444'; btn.disabled = true;
 
   try {
     const res = await fetch('https://formspree.io/f/mlgaqovb', {
@@ -1243,18 +1304,31 @@ async function enviarFormulario() {
       body: JSON.stringify({ nombre, empresa, email, telefono: tel, servicio, descripcion: desc })
     });
     if (res.ok) {
-      btn.textContent = '✓ Solicitud recibida — te respondemos en menos de 24h';
+      btn.textContent = isEN ? '✓ Request received — we will reply within 24 h' : '✓ Solicitud recibida — te respondemos en menos de 24h';
       btn.style.background = '#1f4e2a';
       document.querySelectorAll('.fg input, .fg textarea, .fg select').forEach(el => el.value = '');
     } else { throw new Error(); }
   } catch {
-    btn.textContent = '✗ Error al enviar — inténtalo de nuevo o escríbenos directamente';
+    btn.textContent = isEN ? '✗ Send error — try again or write to us directly' : '✗ Error al enviar — inténtalo de nuevo o escríbenos directamente';
     btn.style.background = '#8b3a1a'; btn.disabled = false;
-    setTimeout(() => { btn.textContent = 'Solicitar informe'; btn.style.background = ''; }, 4000);
+    setTimeout(() => { btn.textContent = isEN ? 'Request a report' : 'Solicitar informe'; btn.style.background = ''; }, 4000);
   }
 }
 
 initReveal();
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('umbral-lang', lang);
+}
+// Restore saved lang
+(function() {
+  var saved = localStorage.getItem('umbral-lang');
+  if (saved && saved !== 'es') setLang(saved);
+})();
+
 </script>
 </body>
 </html>
